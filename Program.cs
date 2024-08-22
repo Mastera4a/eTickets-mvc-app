@@ -14,6 +14,7 @@ services.AddDbContext<AppDbContext>(options =>
 services.AddScoped<IActorsService, ActorsService>();
 services.AddScoped<IProducersService, ProducersService>();
 services.AddScoped<ICinemasService, CinemasService>();
+services.AddScoped<IMoviesService, MoviesService>();
 
 // Add services to the container.
 services.AddControllersWithViews();
