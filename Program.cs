@@ -12,6 +12,7 @@ services.AddDbContext<AppDbContext>(options =>
 
 // Dependency injection
 services.AddScoped<IActorsService, ActorsService>();
+services.AddScoped<IProducersService, ProducersService>();
 
 // Add services to the container.
 services.AddControllersWithViews();
