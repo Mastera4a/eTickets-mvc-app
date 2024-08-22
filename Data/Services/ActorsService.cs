@@ -25,9 +25,10 @@ namespace eTickets.Data.Services
 
         public async Task<IEnumerable<Actor>> GetAllAsync() => await _context.Actors.ToListAsync();
 
-        public Task<Actor> GetByIdAsync(int id)
+        public async Task<Actor> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Actors.FirstOrDefaultAsync(a => a.Id == id);
+            return result;
         }
 
         public Task<Actor> UpdateAsync(int id, Actor newActor)
