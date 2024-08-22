@@ -22,7 +22,7 @@ namespace eTickets.Data.Base
 
         public async Task DeleteAsync(int id)
         {
-            var entity = var result = await _context
+            var entity = await _context
                 .Set<T>()
                 .OrderBy(a => a.Id)
                 .LastOrDefaultAsync(a => a.Id == id);
