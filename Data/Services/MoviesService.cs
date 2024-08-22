@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Data.Services
 {
-    public class MoviesService : EntityBaseRepository<Movie>, IMoviesService
+    public class MoviesService : EntityBaseRepository<NewMovieVM>, IMoviesService
     {
         private readonly AppDbContext _context;
 
@@ -14,7 +14,7 @@ namespace eTickets.Data.Services
             _context = context;
         }
 
-        public async Task<Movie> GetMovieById(int id)
+        public async Task<NewMovieVM> GetMovieById(int id)
         {
             var movieDetails = await _context.Movies
                 .Include(c => c.Cinema)

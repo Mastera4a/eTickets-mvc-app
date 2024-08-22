@@ -1,0 +1,73 @@
+﻿@model NewMovieVM
+
+@{
+    ViewData["Title"] = "Create a new movie";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1 style="text-align: center; font-family: Docktrin;">Create a New Movie</h1>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Name" class="form-label"></label>
+                                    <input asp-for="Name" class="form-label" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="StartDate" class="form-label"></label>
+                                    <input asp-for="StartDate" class="form-label" />
+                                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="EndDate" class="form-label"></label>
+                                    <input asp-for="EndDate" class="form-label" />
+                                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Price" class="form-label"></label>
+                                    <input asp-for="Price" class="form-label" />
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="ImageURL" class="form-label"></label>
+                                    <input asp-for="ImageURL" class="form-label" />
+                                    <span asp-validation-for="ImageURL" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="CinemaId" class="form-label"></label>
+                                    <select asp-for="CinemaId" class="form-label"></select>
+                                    <span asp-validation-for="CinemaId" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="MovieCategory" class="form-label"></label>
+                                    <select asp-for="MovieCategory" class="form-label"></select>
+                                    <span asp-validation-for="MovieCategory" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="ProducerId" class="form-label"></label>
+                                    <select asp-for="ProducerId" class="form-label"></select>
+                                    <span asp-validation-for="ProducerId" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="ProducerId" class="form-label"></label>
+                                    <select asp-for="ProducerId" class="form-label" multiple></select>
+                                    <span asp-validation-for="ProducerId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

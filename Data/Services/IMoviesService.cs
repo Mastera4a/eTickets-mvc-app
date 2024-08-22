@@ -3,8 +3,8 @@ using eTickets.Models;
 
 namespace eTickets.Data.Services
 {
-    public interface IMoviesService : IEntityBaseRepository<Movie>
+    public interface IMoviesService : IEntityBaseRepository<NewMovieVM>
     {
-        Task<Movie> GetMovieById(int id);
+        Task<NewMovieVM> GetMovieById(int id);
     }
 }
