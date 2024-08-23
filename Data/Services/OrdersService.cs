@@ -1,12 +1,15 @@
 ﻿using eTickets.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace eTickets.Data.Services
 {
     public class OrdersService : IOrdersService
     {
         private readonly AppDbContext _context;
-
         public OrdersService(AppDbContext context)
         {
             _context = context;
@@ -14,12 +17,7 @@ namespace eTickets.Data.Services
 
         public async Task<List<Order>> GetOrdersByUserIdAsync(string userId)
         {
-            var orders = await _context.Orders
-                .Include(o => o.OrderItems)
-                .ThenInclude(m => m.Movie)
-                .Where(u => u.UserId == userId)
-                .ToListAsync();
-
+            var orders = await _context.Orders.Include(n => n.OrderItems).ThenInclude(n => n.Movie).Where(n => n.UserId == userId).ToListAsync();
             return orders;
         }
 
@@ -27,11 +25,10 @@ namespace eTickets.Data.Services
         {
             var order = new Order()
             {
-                 UserId = userId,
-                 Email = userEmailAddress
+                UserId = userId,
+                Email = userEmailAddress
             };
-
-            await _context.AddAsync(order);
+            await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();
 
             foreach (var item in items)
@@ -40,7 +37,7 @@ namespace eTickets.Data.Services
                 {
                     Amount = item.Amount,
                     MovieId = item.Movie.Id,
-                    OrderId = item.Id,
+                    OrderId = order.Id,
                     Price = item.Movie.Price
                 };
                 await _context.OrderItems.AddAsync(orderItem);
