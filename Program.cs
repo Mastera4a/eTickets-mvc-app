@@ -1,4 +1,5 @@
 using eTickets.Data;
+using eTickets.Data.Cart;
 using eTickets.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,11 @@ services.AddScoped<IActorsService, ActorsService>();
 services.AddScoped<IProducersService, ProducersService>();
 services.AddScoped<ICinemasService, CinemasService>();
 services.AddScoped<IMoviesService, MoviesService>();
+
+services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
+services.AddSession();
 
 // Add services to the container.
 services.AddControllersWithViews();
@@ -33,6 +39,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 
