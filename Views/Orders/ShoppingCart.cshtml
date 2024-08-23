@@ -74,11 +74,13 @@
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 
     <script>
+        let _total = parseFloat('@Model.ShoppingCartTotal.ToString("F2")');
+
         paypal.Button.render({
             //Configure environment
             env: 'sandbox',
             client: {
-                sandbox: 'AVX3-qB3ynyxyadQak-x50Zv92YxgzcpBtXlkIIlZuGvuiS3nTM6zLOYR-iEZ_QsXu3JyIovgu84-9YE'
+                sandbox: 'AcKRtgL4i68EZ2ZYuYUx3ilihAg2YhL5dtF_m19A8MjBWVOn6ewNS4M_uV8gA3xi98zTcUq38gUHbVFx'
             },
 
             //Customize button
@@ -89,15 +91,22 @@
                 shape: 'pill'
             },
             commit: true,
-            
+
             //Set up a payment
             payment: function (data, actions) {
-                console.log("payment set up")
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: _total.toFixed(2), // Ensure the total is formatted correctly
+                            currency: 'USD'
+                        }
+                    }]
+                });
             },
 
             //Execute the payment
             onAuthorize: function (data, actions) {
-                console.log("payment executed")
+                console.log("payment executed");
             }
         }, '#paypal-btn');
     </script>
