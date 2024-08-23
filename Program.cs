@@ -1,6 +1,9 @@
 using eTickets.Data;
 using eTickets.Data.Cart;
 using eTickets.Data.Services;
+using eTickets.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +24,14 @@ services.AddScoped<IOrdersService, OrdersService>();
 services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 
+//Authentication and authorization
+services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+services.AddMemoryCache();
 services.AddSession();
+services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+});
 
 // Add services to the container.
 services.AddControllersWithViews();
@@ -42,6 +52,10 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
 
+//Authentication & Authorization
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -50,5 +64,6 @@ app.MapControllerRoute(
 
 //Seed Database
 AppDbInitializer.Seed(app);
+AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 
 app.Run();
