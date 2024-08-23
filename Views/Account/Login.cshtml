@@ -1,0 +1,40 @@
+﻿@using eTickets.Data.ViewModels
+@model LoginVM
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p>
+            <h1 style="text-align: center; font-family: Docktrin;">Log In To Your Account</h1>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="EmailAddress" class="form-label"></label>
+                        <input asp-for="EmailAddress" class="form-control" />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="submit" value="Log In" class="btn btn-outline-success float-end" />
+                        <a class="btn btn-outline-secondary" asp-controller="Movies" asp-action="Index">
+                            <i class="bi bi-arrow-left-square"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
