@@ -47,6 +47,18 @@ body {
         height: auto;
     }
 
+@font-face {
+    font-family: 'Docktrin'; /* Название шрифта */
+    url('~/fonts/Docktrin.ttf') format('truetype'); /* В формате TTF */
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'MyCustomFont', Arial, sans-serif; /* Применяем шрифт */
+}
+
+
 /* Скрытие логотипа на планшетах и мобильных устройствах */
 @media (max-width: 992px) {
     .logo-container {
