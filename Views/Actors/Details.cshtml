@@ -4,42 +4,39 @@
     ViewData["Title"] = "Info About Actor";
 }
 
-<div class="row text">
-    <div class="col-md-8 offset-2">
-        <p>
-            <h1 style="text-align: center; font-family: Docktrin;">Details for @Model.FullName</h1>
-        </p>
+<div class="row">
+    <div class="col-md-8 offset-md-2 col-sm-12">
+        <h1 class="text-center" style="font-family: Docktrin;">Details for @Model.FullName</h1>
+
         <div class="row">
-            <div class="col-md-8 offset-2">
-                <div class="mb-3 text-center">
-                    <img class="border-info rounded-circle" id="ProfilePicturePreview" style="max-width: 150px;" />
-                </div>
+            <div class="col-12 text-center mb-3">
+                <img class="border-info rounded-circle img-fluid" id="ProfilePicturePreview" style="max-width: 150px;" alt="@Model.FullName's Profile Picture" />
+            </div>
 
-                <div class="mb-3">
-                    <label asp-for="ProfilePictureURL" class="control-label"></label>
-                    <input asp-for="ProfilePictureURL" class="form-control" readonly />
-                    <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
-                </div>
+            <div class="col-12 mb-3">
+                <label asp-for="ProfilePictureURL" class="control-label"></label>
+                <input asp-for="ProfilePictureURL" class="form-control" readonly />
+                <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+            </div>
 
-                <div class="mb-3">
-                    <label asp-for="FullName" class="control-label"></label>
-                    <input asp-for="FullName" class="form-control" readonly />
-                    <span asp-validation-for="FullName" class="text-danger"></span>
-                </div>
+            <div class="col-12 mb-3">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" readonly />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
 
-                <div class="mb-3">
-                    <label asp-for="Bio" class="control-label"></label>
-                    <input asp-for="Bio" class="form-control" readonly />
-                    <span asp-validation-for="Bio" class="text-danger"></span>
-                </div>
+            <div class="col-12 mb-3">
+                <label asp-for="Bio" class="control-label"></label>
+                <input asp-for="Bio" class="form-control" readonly />
+                <span asp-validation-for="Bio" class="text-danger"></span>
+            </div>
 
-                <div class="mb-3">
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <a class="btn btn-outline-success float-end" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-                    }
-                    <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
-                </div>
+            <div class="col-12 mb-3 text-end">
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                }
+                <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
             </div>
         </div>
     </div>

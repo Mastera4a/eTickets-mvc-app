@@ -5,16 +5,14 @@
 }
 
 <div class="row">
-    <div class="col-md-8 offset-2">
-        <p>
-            <h1 style="text-align: center; font-family: Docktrin;">List of All Your Orders</h1>
-        </p>
+    <div class="col-lg-8 col-md-10 col-sm-12 offset-lg-2 offset-md-1">
+        <h1 class="text-center" style="font-family: Docktrin;">List of All Your Orders</h1>
 
-        <table class="table">
+        <table class="table table-responsive">
             <thead>
                 <tr>
                     <th>Order ID</th>
-                    <td>Items</td>
+                    <th>Items</th>
                     <th>Total</th>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
@@ -28,15 +26,15 @@
                     <tr>
                         <td class="align-middle">@order.Id</td>
                         <td class="align-middle">
-                            <ul style="list-style-type: none">
+                            <ul class="list-unstyled">
                                 @foreach (var item in order.OrderItems)
                                 {
-                                     <li>
-                                         <div class="alert-info" role="alert">
-                                             <span class="badge bg-success">@item.Amount</span> [$@item.Price] - @item.Movie.Name
-                                         </div>
-                                     </li>
-                                }                               
+                                    <li>
+                                        <div class="alert alert-info p-2" role="alert">
+                                            <span class="badge bg-success">@item.Amount</span> [$@item.Price] - @item.Movie.Name
+                                        </div>
+                                    </li>
+                                }
                             </ul>
                         </td>
                         <td class="align-middle">
@@ -50,6 +48,5 @@
                 }
             </tbody>
         </table>
-
     </div>
 </div>

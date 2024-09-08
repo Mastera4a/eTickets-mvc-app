@@ -5,22 +5,18 @@
 }
 
 <div class="row">
-    <div class="col-md-8 offset-2">
+    <div class="col-md-8 offset-md-2 col-sm-12">
         <div class="card mb-12">
             <div class="row g-0">
-                <div class="col-md-12">
+                <div class="col-12">
                     <div class="card-header text-white bg-info">
-                        <p class="card-text">
-                            <h5 class="card-title">
-                                @Model.Name
-                            </h5>
-                        </p>
+                        <h5 class="card-title">@Model.Name</h5>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <img src="@Model.ImageURL" width="100%" alt="@Model.Name">
+                <div class="col-md-4 col-sm-12">
+                    <img src="@Model.ImageURL" class="img-fluid" alt="@Model.Name">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 col-sm-12">
                     <div class="card-body">
                         <p class="card-text">@Model.Description</p>
                         <p class="card-text">
@@ -38,7 +34,7 @@
                         <p class="card-text"><b>Category: </b>@Model.MovieCategory</p>
                         <p class="card-text"><b>Start Date: </b>@Model.StartDate.ToString("dd MMM yy")</p>
                         <p class="card-text"><b>End Date: </b>@Model.EndDate.ToString("dd MMM yy")</p>
-                        <p class="card-text ">
+                        <p class="card-text">
                             <b>Status: </b>
                             @if (DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
                             {
@@ -59,28 +55,28 @@
                             <div class="row">
                                 @foreach (var actor in Model.Actors_Movies)
                                 {
-                                    <div class="flex-column text-center">
-                                        <img class="border-info rounded-circle" src="@actor.Actor.ProfilePictureURL" style="max-width: 150px" />
+                                    <div class="col-6 col-md-4 text-center mb-2">
+                                        <img class="border-info rounded-circle img-fluid" src="@actor.Actor.ProfilePictureURL" style="max-width: 150px" alt="@actor.Actor.FullName" />
                                         <br />
                                         <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.FullName</a>
                                     </div>
                                 }
                             </div>
                         </p>
-
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="card-footer ">
+                <div class="col-12">
+                    <div class="card-footer">
                         <p class="card-text">
-                            <a class="btn btn-outline-primary float-end" asp-action="Index">
+                            <a class="btn btn-outline-primary float-end mb-2" asp-action="Index">
                                 <i class="bi bi-arrow-left-square-fill"></i> Back to List
                             </a>
                             <a class="btn btn-success text-white @((DateTime.Now > Model.EndDate) ? "disabled" : "")"
-                                asp-controller="Orders" 
-                                asp-action="AddItemToShoppingCart" 
-                                asp-route-id="@Model.Id">
-                            <i class="bi bi-cart-plus"></i> Add to Cart (Price $@Model.Price)</a>
+                               asp-controller="Orders"
+                               asp-action="AddItemToShoppingCart"
+                               asp-route-id="@Model.Id">
+                                <i class="bi bi-cart-plus"></i> Add to Cart (Price $@Model.Price)
+                            </a>
                         </p>
                     </div>
                 </div>
